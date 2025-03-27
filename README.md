@@ -13,3 +13,11 @@ Para executar este projeto, siga estes passos:
 2. Com um terminal aberto na pasta do projeto, execute a instalação das dependências do nodejs: `npm install && npm run build`
 
 3. Execute o projeto: `composer run dev`
+
+## Estrutura do projeto
+
+/ (landing page)
+/admin/subjects (listagem de sujeitos)
+/admin/subjects/create (criação de um novo sujeito)
+/admin/subjects/{id} (visualização do sujeito e listagem dos seus atendimentos)
+/admin/subjects/{id}/edit (edição do sujeito)
