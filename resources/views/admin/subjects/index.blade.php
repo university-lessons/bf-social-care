@@ -1,25 +1,21 @@
-<h1>Listagem de Sujeitos</h1>
+@extends('layouts.admin')
 
-@if (session('success'))
-    <div style="color: green">
-        {{ session('success') }}
-    </div>
-@endif
+@section('title')
+    Listagem de Sujeitos
+@endsection
 
-@if (session('error'))
-    <div style="color: red">
-        {{ session('error') }}
-    </div>
-@endif
+@section('content')
+    <a href="{{ route('admin.subjects.create') }}">Criar Sujeito</a>
 
-<a href="{{ route('admin.subjects.create') }}">Criar Sujeito</a>
-
-<ul>
-    @foreach ($subjects as $subject)
-        <li>
-            <a href="{{ route('admin.subjects.detail', ['id' => $subject['id']]) }}">
-                {{ $subject['name'] }}
-            </a>
-        </li>
-    @endforeach
-</ul>
+    <ul>
+        @forelse ($subjects as $subject)
+            <li>
+                <a href="{{ route('admin.subjects.detail', ['id' => $subject['id']]) }}">
+                    {{ $subject['name'] }}
+                </a>
+            </li>
+        @empty
+            <p>(sem registros)</p>
+        @endforelse
+    </ul>
+@endsection

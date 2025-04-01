@@ -1,22 +1,16 @@
-<h1>Criação de Sujeito</h1>
+@extends('layouts.admin')
 
-@if (session('success'))
-    <div style="color: green">
-        {{ session('success') }}
-    </div>
-@endif
+@section('title')
+    Criação de Sujeito
+@endsection
 
-@if (session('error'))
-    <div style="color: red">
-        {{ session('error') }}
-    </div>
-@endif
+@section('content')
+    <form action="{{ route('admin.subjects.store') }}" method="POST">
+        @csrf
 
-<form action="{{ route('admin.subjects.store') }}" method="POST">
-    @csrf
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name">
 
-    <label for="name">Nome</label>
-    <input type="text" name="name" id="name">
-
-    <button type="submit">Salvar</button>
-</form>
+        <button type="submit">Salvar</button>
+    </form>
+@endsection

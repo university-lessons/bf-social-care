@@ -1,15 +1,21 @@
-<h1>Detalhes do Sujeito</h1>
+@extends('layouts.admin')
 
-<a href="{{ route('admin.subjects.edit', ['id' => $subject['id']]) }}">Editar</a>
+@section('title')
+    Detalhes do Sujeito
+@endsection
 
-<p>
-    <strong>ID:</strong> {{ $subject['id'] }}
-</p>
+@section('content')
+    <a href="{{ route('admin.subjects.edit', ['id' => $subject['id']]) }}">Editar</a>
 
-<p>
-    <strong>Nome:</strong> {{ $subject['name'] }}
-</p>
+    <p>
+        <strong>ID:</strong> {{ $subject['id'] }}
+    </p>
 
-<h2>Atendimentos</h2>
+    <p>
+        <strong>Nome:</strong> {{ $subject['name'] }}
+    </p>
 
-<p>(sem registros)</p>
+    <h2>Atendimentos</h2>
+
+    <p>(sem registros)</p>
+@endsection
