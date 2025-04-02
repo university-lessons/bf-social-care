@@ -3,14 +3,18 @@
 
 @include('shared.head')
 
-<body class="body-font container mx-auto px-5 text-gray-600">
+<body class="body-font bg-slate-100 text-gray-600">
     <x-admin.header />
 
-    <h1 class="pb-4 font-semibold text-gray-600">@yield('title')</h1>
+    <section class="container mx-auto bg-slate-100 px-5 md:px-0">
 
-    <x-flash />
+        <h1 class="py-4 text-lg font-normal">@yield('title')</h1>
 
-    @yield('content')
+        <x-flash />
+
+        @yield('content')
+
+    </section>
 </body>
 
 </html>

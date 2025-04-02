@@ -10,7 +10,7 @@
 
     <div class="flex justify-center">
 
-        <a class="inline-flex rounded border-0 bg-green-500 px-6 py-2 text-lg text-white hover:bg-green-600 focus:outline-none"
+        <a class="inline-flex rounded border-0 bg-emerald-500 px-6 py-2 text-lg text-white hover:bg-emerald-600 focus:outline-none"
             href="{{ route('admin.subjects.index') }}">Entrar</a>
 
 

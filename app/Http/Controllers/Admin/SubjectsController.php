@@ -34,6 +34,8 @@ class SubjectsController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
+
         if (strlen($request->get("name")) == 0) {
             return redirect()->back()->with('error', 'Erro ao realizar a operação!');
         } else {
