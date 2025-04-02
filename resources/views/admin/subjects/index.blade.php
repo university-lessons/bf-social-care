@@ -13,7 +13,7 @@
                 placeholder="Buscar" />
 
             <button type="submit"
-                class="flex h-8 w-8 cursor-pointer items-center justify-center rounded border-0 bg-green-500 text-lg text-white hover:bg-green-600 focus:outline-none">
+                class="flex h-8 w-12 cursor-pointer items-center justify-center rounded border-0 bg-green-500 text-lg text-white hover:bg-green-600 focus:outline-none">
 
                 <svg stroke="white" fill="white" stroke-width="0" viewBox="0 0 512 512" height="16px" width="16px"
                     xmlns="http://www.w3.org/2000/svg">
