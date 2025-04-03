@@ -34,7 +34,9 @@ class SubjectsController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'name' => 'required'
+        ]);
 
         if (strlen($request->get("name")) == 0) {
             return redirect()->back()->with('error', 'Erro ao realizar a operação!');

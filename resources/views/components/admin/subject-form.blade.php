@@ -9,6 +9,9 @@
             class="w-full rounded border border-gray-300 bg-white text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
             type="text" name="name" id="name" placeholder="Fulano da Silva"
             value="{{ old('name', $subject['name'] ?? '') }}" />
+        @error('name')
+            <p class="-mt-4 mb-4 text-sm text-red-500">{{ $message }}</p>
+        @enderror
 
         <div class="flex flex-col space-x-0 md:flex-row md:space-x-4">
             <div class="flex-1">
