@@ -1,13 +1,18 @@
 <?php
 
 use App\Http\Controllers\Admin\SubjectsController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name("welcome");
 
-Route::group(['prefix' => 'admin'], function () {
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/subjects', [SubjectsController::class, 'index'])->name('admin.subjects.index');
 
     Route::get('/subjects/create', [SubjectsController::class, 'create'])->name('admin.subjects.create');

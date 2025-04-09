@@ -5,9 +5,13 @@
             <span class="ml-3 text-xl">{{ env('APP_NAME') }}</span>
         </a>
 
-        <a class="inline-flex items-center rounded border-0 bg-gray-100 px-3 py-1 hover:bg-gray-200 focus:outline-none"
-            href="{{ route('welcome') }}">
-            Sair
-        </a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit"
+                class="inline-flex cursor-pointer items-center rounded border-0 bg-gray-100 px-3 py-1 hover:bg-gray-200 focus:outline-none"
+                href="{{ route('welcome') }}">
+                Sair
+            </button>
+        </form>
     </div>
 </header>

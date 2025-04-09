@@ -11,7 +11,7 @@
     <div class="flex justify-center">
 
         <a class="inline-flex rounded border-0 bg-emerald-500 px-6 py-2 text-lg text-white hover:bg-emerald-600 focus:outline-none"
-            href="{{ route('admin.subjects.index') }}">Entrar</a>
+            href="{{ route('login') }}">Entrar</a>
 
 
         <a class="ml-4 inline-flex rounded border-0 bg-gray-100 px-6 py-2 text-lg text-gray-700 hover:bg-gray-200 focus:outline-none"
