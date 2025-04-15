@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description');
 
             $table->foreignId('attendance_id')->unique()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });
     }
 
