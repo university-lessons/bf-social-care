@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\SubjectsController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('/subjects/{id}/edit', [SubjectsController::class, 'edit'])->name('admin.subjects.edit');
     Route::post('/subjects/{id}', [SubjectsController::class, 'update'])->name('admin.subjects.update');
+
+    Route::get('/subjects/{id}/attendances', [AttendanceController::class, 'create'])->name('admin.attendances.create');
+    Route::post('/subjects/{id}/attendances', [AttendanceController::class, 'store'])->name('admin.attendances.store');
+
+    Route::get('/subjects/{id}/attendances/{attendanceId}', [AttendanceController::class, 'detail'])->name('admin.attendances.detail');
+
+    Route::post('/attendances/{attendanceId}/setforwarding', [AttendanceController::class, 'setForwarding'])->name('admin.attendances.setforwarding');
 });

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreSubjectRequest;
+use App\Http\Requests\Admin\UpdateSubjectRequest;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class SubjectsController extends Controller
@@ -11,20 +13,7 @@ class SubjectsController extends Controller
     public function index()
     {
         return view('admin.subjects.index', [
-            'subjects' => [
-                [
-                    'id' => 1,
-                    'name' => 'Fulano Silva'
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Ciclano Silva'
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'Beltrano Silva'
-                ]
-            ]
+            'subjects' => Subject::all()
         ]);
     }
 
@@ -35,13 +24,14 @@ class SubjectsController extends Controller
 
     public function store(StoreSubjectRequest $request)
     {
-        // if ( check processing or database errors ) {
-        //     return redirect()->back()->with('error', 'Erro ao realizar a operação!');
-        // } else {
-        //     return redirect()->route('admin.subjects.index')->with('success', 'Alteração realizada com sucesso!');
-        // }
+        $data = $request->validated();
 
-        return redirect()->route('admin.subjects.index')->with('success', 'Alteração realizada com sucesso!');
+        try {
+            Subject::create($data);
+            return redirect()->route('admin.subjects.index')->with('success', 'Alteração realizada com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Erro ao realizar a operação!');
+        }
     }
 
     public function detail(string $id)
@@ -49,10 +39,7 @@ class SubjectsController extends Controller
         return view(
             'admin.subjects.detail',
             [
-                'subject' => [
-                    'id' => 1,
-                    'name' => 'Fulano Silva',
-                ]
+                'subject' => Subject::find($id)
             ]
         );
     }
@@ -62,20 +49,22 @@ class SubjectsController extends Controller
         return view(
             'admin.subjects.edit',
             [
-                'subject' => [
-                    'id' => 1,
-                    'name' => 'Fulano Silva',
-                ]
+                'subject' => Subject::find($id)
             ]
         );
     }
 
-    public function update(Request $request)
+    public function update($id, UpdateSubjectRequest $request)
     {
-        if (strlen($request->get("name")) == 0) {
-            return redirect()->back()->with('error', 'Erro ao realizar a operação!');
-        } else {
+        $data = $request->validated();
+
+        $subject = Subject::find($id);
+
+        try {
+            $subject->update($data);
             return redirect()->route('admin.subjects.index')->with('success', 'Alteração realizada com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Erro ao realizar a operação!');
         }
     }
 }
