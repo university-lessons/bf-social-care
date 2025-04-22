@@ -32,7 +32,7 @@
         <ul class="mt-4">
             @forelse ($subjects as $subject)
                 <li>
-                    <a href="{{ route('admin.subjects.detail', ['id' => $subject['id']]) }}">
+                    <a href="{{ route('admin.subjects.detail', ['subject' => $subject['id']]) }}">
                         {{ $subject['name'] }}
                     </a>
                 </li>

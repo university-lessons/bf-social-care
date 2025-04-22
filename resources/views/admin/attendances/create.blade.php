@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('admin.attendances.store', ['id' => $subject->id]) }}" method="POST">
+    <form action="{{ route('admin.attendances.store', ['subject' => $subject->id]) }}" method="POST">
         @csrf
 
         <label for="description">Descrição</label>

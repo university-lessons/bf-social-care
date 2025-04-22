@@ -11,51 +11,49 @@ use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
-    public function detail(string $id, string $attendanceId)
+    public function detail(Attendance $attendance)
     {
         return view(
             'admin.attendances.detail',
             [
-                'attendance' => Attendance::find($attendanceId)
+                'attendance' => $attendance
             ]
         );
     }
 
-    public function create(string $id)
+    public function create(Subject $subject)
     {
         return view(
             'admin.attendances.create',
             [
-                'subject' => Subject::find($id)
+                'subject' => $subject
             ]
         );
     }
 
-    public function store(string $id, StoreAttendanceRequest $request)
+    public function store(Subject $subject, StoreAttendanceRequest $request)
     {
         $data = $request->validated();
 
         $attendance = new Attendance($data);
         $attendance->user_id = Auth::user()->id;
-        $attendance->subject_id = $id;
+        $attendance->subject_id = $subject->id;
 
-        $demands = $data['demands'];
+        $demands = $data['demands'] ?? null;
 
         if ($attendance->save()) {
-            if ($demands) {
+            if ($demands != null) {
                 $attendance->demands()->attach($demands);
             }
 
-            return redirect()->route('admin.subjects.detail', ['id' => $id])->with('success', 'Alteração realizada com sucesso!');
+            return redirect()->route('admin.subjects.detail', ['subject' => $subject->id])->with('success', 'Alteração realizada com sucesso!');
         } else {
             return redirect()->back()->with('error', 'Erro ao realizar a operação!');
         }
     }
 
-    public function setForwarding(string $attendanceId, Request $request)
+    public function setForwarding(Attendance $attendance, Request $request)
     {
-        $attendance = Attendance::find($attendanceId);
-
         $data = $request->validate([
             'description' => ['required', 'string']
         ]);
@@ -65,7 +63,7 @@ class AttendanceController extends Controller
         ], ['attendance_id'], ['description', 'user_id']);
 
         if ($success) {
-            return redirect()->route('admin.attendances.detail', ['id' => $attendance->subject->id, 'attendanceId' => $attendance->id])->with('success', 'Alteração realizada com sucesso!');
+            return redirect()->route('admin.attendances.detail', ['attendance' => $attendance->id])->with('success', 'Alteração realizada com sucesso!');
         } else {
             return redirect()->back()->with('error', 'Erro ao realizar a operação!');
         }

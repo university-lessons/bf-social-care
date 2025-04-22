@@ -8,7 +8,7 @@
     <div class="rounded bg-white p-4">
         <div class="flex flex-col justify-between sm:flex-row">
             <a class="inline-flex rounded border-0 bg-emerald-500 px-4 py-1 text-white hover:bg-emerald-600 focus:outline-none"
-                href="{{ route('admin.subjects.edit', ['id' => $subject['id']]) }}">Editar Sujeito</a>
+                href="{{ route('admin.subjects.edit', ['subject' => $subject['id']]) }}">Editar Sujeito</a>
 
             <a class="inline-flex rounded border-0 bg-red-500 px-4 py-1 text-white hover:bg-red-600 focus:outline-none"
                 href="#">Excluir Sujeito</a>
@@ -44,7 +44,7 @@
         <div class="mt-4 flex flex-col">
             @forelse ($subject->attendances as $attendance)
                 <a
-                    href="{{ route('admin.attendances.detail', ['id' => $subject->id, 'attendanceId' => $attendance->id]) }}">
+                    href="{{ route('admin.attendances.detail', ['subject' => $subject->id, 'attendance' => $attendance->id]) }}">
                     {{ $attendance->created_at->format('d/m/Y') }}, por {{ $attendance->user->name }}
                 </a>
             @empty
@@ -53,7 +53,7 @@
         </div>
 
         <a class="mt-4 inline-flex rounded border-0 bg-emerald-500 px-4 py-1 text-white hover:bg-emerald-600 focus:outline-none"
-            href="{{ route('admin.attendances.create', ['id' => $subject->id]) }}">Novo Atendimento
+            href="{{ route('admin.attendances.create', ['subject' => $subject->id]) }}">Novo Atendimento
         </a>
     </div>
 @endsection

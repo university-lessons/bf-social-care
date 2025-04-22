@@ -19,15 +19,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/subjects/create', [SubjectsController::class, 'create'])->name('admin.subjects.create');
     Route::post('/subjects', [SubjectsController::class, 'store'])->name('admin.subjects.store');
 
-    Route::get('/subjects/{id}', [SubjectsController::class, 'detail'])->name('admin.subjects.detail');
+    Route::get('/subjects/{subject}', [SubjectsController::class, 'detail'])->name('admin.subjects.detail');
 
-    Route::get('/subjects/{id}/edit', [SubjectsController::class, 'edit'])->name('admin.subjects.edit');
-    Route::post('/subjects/{id}', [SubjectsController::class, 'update'])->name('admin.subjects.update');
+    Route::get('/subjects/{subject}/edit', [SubjectsController::class, 'edit'])->name('admin.subjects.edit');
+    Route::post('/subjects/{subject}', [SubjectsController::class, 'update'])->name('admin.subjects.update');
 
-    Route::get('/subjects/{id}/attendances', [AttendanceController::class, 'create'])->name('admin.attendances.create');
-    Route::post('/subjects/{id}/attendances', [AttendanceController::class, 'store'])->name('admin.attendances.store');
+    Route::get('/subjects/{subject}/attendances', [AttendanceController::class, 'create'])->name('admin.attendances.create');
+    Route::post('/subjects/{subject}/attendances', [AttendanceController::class, 'store'])->name('admin.attendances.store');
 
-    Route::get('/subjects/{id}/attendances/{attendanceId}', [AttendanceController::class, 'detail'])->name('admin.attendances.detail');
+    Route::get('/attendances/{attendance}', [AttendanceController::class, 'detail'])->name('admin.attendances.detail');
 
-    Route::post('/attendances/{attendanceId}/setforwarding', [AttendanceController::class, 'setForwarding'])->name('admin.attendances.setforwarding');
+    Route::post('/attendances/{attendance}/setforwarding', [AttendanceController::class, 'setForwarding'])->name('admin.attendances.setforwarding');
 });

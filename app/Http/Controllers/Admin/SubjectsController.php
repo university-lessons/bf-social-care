@@ -34,31 +34,29 @@ class SubjectsController extends Controller
         }
     }
 
-    public function detail(string $id)
+    public function detail(Subject $subject)
     {
         return view(
             'admin.subjects.detail',
             [
-                'subject' => Subject::find($id)
+                'subject' => $subject
             ]
         );
     }
 
-    public function edit(string $id)
+    public function edit(Subject $subject)
     {
         return view(
             'admin.subjects.edit',
             [
-                'subject' => Subject::find($id)
+                'subject' => $subject
             ]
         );
     }
 
-    public function update($id, UpdateSubjectRequest $request)
+    public function update(Subject $subject, UpdateSubjectRequest $request)
     {
         $data = $request->validated();
-
-        $subject = Subject::find($id);
 
         try {
             $subject->update($data);

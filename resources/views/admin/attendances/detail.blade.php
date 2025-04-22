@@ -35,7 +35,7 @@
             </span>
         @endif
 
-        <form action="{{ route('admin.attendances.setforwarding', ['attendanceId' => $attendance->id]) }}" method="POST">
+        <form action="{{ route('admin.attendances.setforwarding', ['attendance' => $attendance->id]) }}" method="POST">
             @csrf
 
             <label for="description">Descrição</label>

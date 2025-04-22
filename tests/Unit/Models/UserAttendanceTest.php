@@ -11,13 +11,14 @@ class UserAttendanceTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_a_user_can_have_multiple_attendances(): void
+    /**
+     * A basic unit test example.
+     */
+    public function test_an_user_can_have_multiple_attendances(): void
     {
         $user = User::factory()->create();
 
         Attendance::factory()->for($user)->count(3)->create();
-
-        $user->refresh();
 
         $this->assertCount(3, $user->attendances);
     }
