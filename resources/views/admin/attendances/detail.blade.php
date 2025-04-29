@@ -52,5 +52,18 @@
                 Registrar encaminhamentos
             </button>
         </form>
+
+        <h2 class="mt-6 font-medium text-red-600">Área de atenção:</h2>
+
+        <form action="{{ route('admin.attendances.destroy', ['attendance' => $attendance->id]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+
+            <button
+                class="mt-2 inline-flex cursor-pointer rounded border-0 bg-red-500 px-4 py-1 text-white hover:bg-red-600 focus:outline-none"
+                type="submit">
+                Excluir Atendimento
+            </button>
+        </form>
     </div>
 @endsection

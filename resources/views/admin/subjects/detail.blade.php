@@ -10,8 +10,8 @@
             <a class="inline-flex rounded border-0 bg-emerald-500 px-4 py-1 text-white hover:bg-emerald-600 focus:outline-none"
                 href="{{ route('admin.subjects.edit', ['subject' => $subject['id']]) }}">Editar Sujeito</a>
 
-            <a class="inline-flex rounded border-0 bg-red-500 px-4 py-1 text-white hover:bg-red-600 focus:outline-none"
-                href="#">Excluir Sujeito</a>
+            {{-- <a class="inline-flex rounded border-0 bg-red-500 px-4 py-1 text-white hover:bg-red-600 focus:outline-none"
+                href="#">Excluir Sujeito</a> --}}
         </div>
 
         <div class="mt-4">

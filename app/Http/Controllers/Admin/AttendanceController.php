@@ -23,12 +23,20 @@ class AttendanceController extends Controller
 
     public function create(Subject $subject)
     {
+
+
         return view(
             'admin.attendances.create',
             [
                 'subject' => $subject
             ]
         );
+    }
+
+    public function destroy(Attendance $attendance)
+    {
+        $attendance->delete();
+        return redirect()->route('admin.subjects.detail', ['subject' => $attendance->subject_id])->with('success', 'Atendimento excluido com sucesso!');
     }
 
     public function store(Subject $subject, StoreAttendanceRequest $request)

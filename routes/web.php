@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/subjects/{subject}/attendances', [AttendanceController::class, 'store'])->name('admin.attendances.store');
 
     Route::get('/attendances/{attendance}', [AttendanceController::class, 'detail'])->name('admin.attendances.detail');
+    Route::delete('/attendances/{attendance}', [AttendanceController::class, 'destroy'])->name('admin.attendances.destroy');
 
     Route::post('/attendances/{attendance}/setforwarding', [AttendanceController::class, 'setForwarding'])->name('admin.attendances.setforwarding');
 });
