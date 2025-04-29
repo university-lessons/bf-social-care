@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\StoreAttendanceRequest;
 use App\Models\Attendance;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
@@ -34,8 +35,12 @@ class AttendanceController extends Controller
         );
     }
 
-    public function destroy(Attendance $attendance)
+    public function destroy(Attendance $attendance, Request $request)
     {
+        if ($request->user()->cannot('destroy', $attendance)) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
+
         $attendance->delete();
         return redirect()->route('admin.subjects.detail', ['subject' => $attendance->subject_id])->with('success', 'Atendimento excluido com sucesso!');
     }

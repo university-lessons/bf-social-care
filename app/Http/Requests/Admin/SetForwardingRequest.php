@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Attendance;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SetForwardingRequest extends FormRequest
@@ -11,7 +13,7 @@ class SetForwardingRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('setForwarding', $this->route("attendance"));
     }
 
     /**
