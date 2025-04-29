@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SetForwardingRequest;
 use App\Http\Requests\Admin\StoreAttendanceRequest;
 use App\Models\Attendance;
 use App\Models\Subject;
@@ -60,11 +61,9 @@ class AttendanceController extends Controller
         }
     }
 
-    public function setForwarding(Attendance $attendance, Request $request)
+    public function setForwarding(Attendance $attendance, SetForwardingRequest $request)
     {
-        $data = $request->validate([
-            'description' => ['required', 'string']
-        ]);
+        $data = $request->validated();
 
         $success = $attendance->forwarding()->upsert([
             ['description' => $data['description'], 'attendance_id' => $attendance->id, 'user_id' => Auth::user()->id],
