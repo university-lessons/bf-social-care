@@ -26,6 +26,8 @@
             @endforelse
         </div>
 
+        <hr class="my-8 text-slate-200" />
+
         <p class="mt-4"><strong>Encaminhamentos:</strong></p>
 
         @if ($attendance->forwarding)
@@ -39,19 +41,54 @@
             @csrf
 
             <label for="description">Descrição</label>
-            <textarea
-                class="w-full rounded border border-gray-300 bg-white text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
-                name="description" id="description">{{ old('description', $attendance->forwarding['description'] ?? '') }}</textarea>
-            @error('description')
-                <p class="mb-4 text-sm text-red-500">{{ $message }}</p>
-            @enderror
+            <div class="mt-2 flex flex-row">
 
-            <button
-                class="mt-4 inline-flex cursor-pointer rounded border-0 bg-emerald-500 px-4 py-1 text-white hover:bg-emerald-600 focus:outline-none"
-                type="submit">
-                Registrar encaminhamentos
-            </button>
+                <textarea
+                    class="w-full rounded border border-gray-300 bg-white text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+                    name="description" id="description">{{ old('description', $attendance->forwarding['description'] ?? '') }}</textarea>
+                @error('description')
+                    <p class="mb-4 text-sm text-red-500">{{ $message }}</p>
+                @enderror
+
+                <button
+                    class="inline-flex cursor-pointer rounded border-0 bg-emerald-500 px-4 py-1 text-white hover:bg-emerald-600 focus:outline-none"
+                    type="submit">
+                    Registrar encaminhamentos
+                </button>
+            </div>
         </form>
+
+        <hr class="my-8 text-slate-200" />
+
+        <p class="mt-4"><strong>Anexos:</strong></p>
+
+        <div class="my-2 flex flex-wrap">
+            @foreach ($attendance->attachments as $attachment)
+                <x-admin.attachment :attachment="$attachment" />
+            @endforeach
+        </div>
+
+        <form method="POST" action="{{ route('admin.attendances.storeAttachment', ['attendance' => $attendance->id]) }}"
+            enctype="multipart/form-data">
+            <div class="flex flex-row">
+                @csrf
+                <div>
+                    <label for="file"
+                        class="flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 shadow-sm focus-within:ring-2 focus-within:ring-emerald-500 focus-within:ring-offset-2 hover:bg-gray-50">
+                        <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png, .pdf"
+                            class="block w-full text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100">
+                    </label>
+                    @error('file')
+                        <p class="mb-4 text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                <button
+                    class="inline-flex cursor-pointer items-center rounded border-0 bg-emerald-500 px-4 py-1 text-white hover:bg-emerald-600 focus:outline-none"
+                    type="submit">Enviar Anexo</button>
+            </div>
+        </form>
+
+        <hr class="my-8 text-slate-200" />
 
         <h2 class="mt-6 font-medium text-red-600">Área de atenção:</h2>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AttachmentController;
 use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\SubjectsController;
 use App\Http\Controllers\AuthController;
@@ -31,4 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::delete('/attendances/{attendance}', [AttendanceController::class, 'destroy'])->name('admin.attendances.destroy');
 
     Route::post('/attendances/{attendance}/setforwarding', [AttendanceController::class, 'setForwarding'])->name('admin.attendances.setforwarding');
+
+    Route::post('/attendances/{attendance}/attachments', [AttachmentController::class, 'store'])->name('admin.attendances.storeAttachment');
+    Route::delete('/attachments/{attachment}', [AttachmentController::class, 'destroy'])->name('admin.attachments.destroy');
 });
