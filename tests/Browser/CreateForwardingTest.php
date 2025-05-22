@@ -44,22 +44,20 @@ class CreateForwardingTest extends DuskTestCase
     public function testAnUserCanAddAttachment(): void
     {
         $this->browse(function (Browser $browser) {
-            $this->browse(function (Browser $browser) {
-                $browser->loginAs($this->user)
-                    ->visit(route('admin.attendances.detail', $this->attendance))
-                    ->assertSee('Detalhes do Atendimento');
+            $browser->loginAs($this->user)
+                ->visit(route('admin.attendances.detail', $this->attendance))
+                ->assertSee('Detalhes do Atendimento');
 
-                $browser->attach('file', 'tests/Browser/Files/test.pdf');
+            $browser->attach('file', 'tests/Browser/Files/test.pdf');
 
-                $browser->screenshot('attachment 1');
+            $browser->screenshot('attachment 1');
 
-                $browser->press('Enviar Anexo');
+            $browser->press('Enviar Anexo');
 
-                $browser->screenshot('attachment 2');
+            $browser->screenshot('attachment 2');
 
-                $browser->waitForText("Download PDF");
-                $browser->assertSee("Download PDF");
-            });
+            $browser->waitForText("Download PDF");
+            $browser->assertSee("Download PDF");
         });
     }
 }
