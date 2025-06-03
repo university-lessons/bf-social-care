@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [ead-modulo-14]
+    branches: [aula-14]
 jobs:
   unit-tests:
     name: Unit Tests
