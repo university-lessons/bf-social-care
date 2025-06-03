@@ -39,7 +39,7 @@ class CreateAttendanceTest extends DuskTestCase
 
             $browser->press('Cadastrar')
                 ->waitForLocation('/admin/subjects/1')
-                ->assertPathIs('/admin/subjects/1');
+                ->assertPathIs('/admin/subjects');
         });
     }
 }
