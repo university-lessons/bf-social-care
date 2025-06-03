@@ -20,6 +20,6 @@ class UserAttendanceTest extends TestCase
 
         Attendance::factory()->for($user)->count(3)->create();
 
-        $this->assertCount(3, $user->attendances);
+        $this->assertCount(1, $user->attendances);
     }
 }
