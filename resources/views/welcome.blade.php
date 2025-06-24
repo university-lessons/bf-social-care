@@ -5,6 +5,8 @@
 
     <p class="mb-8 leading-relaxed">Simplicidade e agilidade no registro de atendimentos sociais.</p>
 
+    <p class="mb-8 leading-relaxed">Ajudamos a comunidade a se sentir mais conectada e colaborativa.</p>
+
     <img class="mb-10 w-5/6 rounded object-cover object-center md:w-3/6 lg:w-2/6" src="{{ asset('images/welcome.svg') }}"
         alt="Imagem de boas vindas">
 
